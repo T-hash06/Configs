@@ -14,3 +14,5 @@ compinit
 
 alias v="nvim"
 alias la="ls -la"
+
+export CONFIG="$HOME/.config/global"
