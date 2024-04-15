@@ -1,4 +1,5 @@
 # ~/.config/qtile/config.py
+# pip install iwlib
 
 # Copyright (c) 2010 Aldo Cortesi
 # Copyright (c) 2010, 2014 dequis
@@ -150,7 +151,9 @@ screens = [
         top=bar.Bar(
             [
                 widget.CurrentLayout(),
-                widget.GroupBox(),
+                widget.GroupBox(
+                    highlight_method="text",
+                ),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Chord(
@@ -164,8 +167,10 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M:%S %p"),
-                widget.QuickExit(),
+                widget.Clock(format="%Y-%m-%d %a %I:%M:%S"),
+                widget.Battery(format="{percent:2.0%}"),
+                widget.Wlan(format="{essid}"),
+                widget.QuickExit(default_text="[ Bye ]"),
             ],
             34,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
