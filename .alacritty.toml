@@ -1,0 +1,11 @@
+import = [
+	# "~/.config/global/themes/alacritty/gruvbox_light.toml"
+	"~/.config/global/themes/alacritty/gruvbox_dark.toml"
+]
+
+[font]
+size = 10
+normal = { family = "Fira Code", style = "Regular" }
+
+[window]
+# opacity = 0.25
