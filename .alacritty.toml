@@ -10,4 +10,5 @@ size = 10
 normal = { family = "Fira Code", style = "Regular" }
 
 [window]
-opacity = 0.90
+opacity = 0.92
+padding = { x = 12, y = 12 }
