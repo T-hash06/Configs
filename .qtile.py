@@ -1,5 +1,6 @@
 # ~/.config/qtile/config.py
 # pip install iwlib
+# sudo pacman -S alsa-utils for volume control
 
 # Copyright (c) 2010 Aldo Cortesi
 # Copyright (c) 2010, 2014 dequis

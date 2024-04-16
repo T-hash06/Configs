@@ -2,7 +2,8 @@
 
 import = [
 	# "~/.config/global/themes/alacritty/gruvbox_light.toml"
-	"~/.config/global/themes/alacritty/gruvbox_dark.toml"
+	# "~/.config/global/themes/alacritty/gruvbox_dark.toml"
+	"~/.config/global/themes/alacritty/one_dark.toml"
 ]
 
 [font]
