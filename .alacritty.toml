@@ -10,4 +10,4 @@ size = 10
 normal = { family = "Fira Code", style = "Regular" }
 
 [window]
-# opacity = 0.25
+opacity = 0.90
