@@ -46,8 +46,6 @@ def autostart():
     )
 
 keys = [
-    # A list of available commands that can be bound to keys can be found
-    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -61,7 +59,6 @@ keys = [
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
     # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
@@ -93,43 +90,27 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 
-# Add key bindings to switch VTs in Wayland.
-# We can't check qtile.core.name in default config as it is loaded before qtile is started
-# We therefore defer the check until the key binding is run by using .when(func=...)
-for vt in range(1, 8):
-    keys.append(
-        Key(
-            ["control", "mod1"],
-            f"f{vt}",
-            lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
-            desc=f"Switch to VT{vt}",
-        )
-    )
+groups = [Group(i) for i in "\uf120\uf121\uef09"]
 
+for index, group in enumerate(groups):
+    access = str(index + 1)
 
-groups = [Group(i) for i in "123"]
-
-for i in groups:
     keys.extend(
         [
             # mod1 + group number = switch to group
             Key(
                 [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
+                access,
+                lazy.group[group.name].toscreen(),
+                desc="Switch to group {}".format(access),
             ),
             # mod1 + shift + group number = switch to & move focused window to group
             Key(
                 [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
+                access,
+                lazy.window.togroup(group.name, switch_group=True),
+                desc="Switch to & move focused window to group {}".format(access),
             ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + group number = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
         ]
     )
 
@@ -150,9 +131,9 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="Fira Code Retina",
-    fontsize=16,
-    padding=3,
+    font="Ubuntu Nerd Font Bold",
+    fontsize=14,
+    padding=8,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -162,30 +143,25 @@ screens = [
         wallpaper_mode="fill",
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
                 widget.GroupBox(
                     highlight_method="text",
+                    fontsize=14,
+                    active="#ffffff",
+                    inactive="#ffffff",
+                    this_current_screen_border="#ffafcc"
                 ),
                 widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                # widget.TextBox("default config", name="default"),
-                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M:%S"),
-                widget.Battery(format="{percent:2.0%}"),
-                widget.Wlan(format="{essid}"),
-                widget.QuickExit(default_text="[ Bye ]"),
+                widget.WindowName(format="|   {name}"),
+                widget.TextBox("\uf004   I use Arch"),
+                widget.CPU(format="\uf233   Cpu:  {load_percent}%"),
+                widget.Memory(format="\uefc5   Mem:  {MemUsed: .0f}M Used"),
+                widget.Clock(format="\uef37   %a,  %b %d - %I:%M"),
+                widget.Battery(format="\uf240   {percent:2.0%}"),
+                widget.Wlan(format="\uf1eb   <span text_transform='lowercase'>{essid}</span>"),
             ],
-            34,
-            background="#00000024"
+            30,
+            background="#00000024",
+            margin=[0, 2, 0, 2]
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
@@ -194,13 +170,6 @@ screens = [
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
         # x11_drag_polling_rate = 60,
     ),
-]
-
-# Drag floating layouts.
-mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
