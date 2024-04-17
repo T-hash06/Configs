@@ -1,6 +1,5 @@
 # ~/.config/qtile/config.py
 # pip install iwlib
-# sudo pacman -S alsa-utils for volume control
 
 # Copyright (c) 2010 Aldo Cortesi
 # Copyright (c) 2010, 2014 dequis
@@ -33,6 +32,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from os import environ
+from colors import colors
 
 import subprocess
 
@@ -115,7 +115,7 @@ for index, group in enumerate(groups):
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=2, margin=4),
+    layout.Columns(border_focus=colors['magenta'], border_normal=colors["black"], border_width=2, margin=4),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -139,29 +139,28 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        wallpaper="~/images/wallpapers/waves.jpg",
+        wallpaper="~/images/wallpapers/planet.jpg",
         wallpaper_mode="fill",
         top=bar.Bar(
             [
                 widget.GroupBox(
                     highlight_method="text",
                     fontsize=14,
-                    active="#ffffff",
-                    inactive="#ffffff",
-                    this_current_screen_border="#ffafcc"
+                    active=colors["white"],
+                    inactive=colors["white"],
+                    this_current_screen_border=colors["primary"]
                 ),
                 widget.Prompt(),
-                widget.WindowName(format="|   {name}"),
-                widget.TextBox("\uf004   I use Arch"),
-                widget.CPU(format="\uf233   Cpu:  {load_percent}%"),
-                widget.Memory(format="\uefc5   Mem:  {MemUsed: .0f}M Used"),
-                widget.Clock(format="\uef37   %a,  %b %d - %I:%M"),
-                widget.Battery(format="\uf240   {percent:2.0%}"),
-                widget.Wlan(format="\uf1eb   <span text_transform='lowercase'>{essid}</span>"),
+                widget.WindowName(format="|   {name}", foreground=colors["secondary"]),
+                widget.TextBox("\uf004   I use Arch", foreground=colors["primary"]),
+                widget.CPU(format="\uf233   Cpu:  {load_percent}%", foreground=colors["red"]),
+                widget.Memory(format="\uefc5   Mem:  {MemUsed: .0f}M Used", foreground=colors["yellow"]),
+                widget.Wlan(format="\uf1eb   <span text_transform='lowercase'>{essid}</span>", foreground=colors["cyan"]),
+                widget.Battery(format="\uf240   {percent:2.0%}", foreground=colors["green"], low_foreground=colors["red"]),
+                widget.Clock(format="\uef37   %a,  %b %d - %I:%M", foreground=colors["magenta"]),
             ],
             30,
-            background="#00000024",
-            margin=[0, 2, 0, 2]
+            margin=[0, 4, 0, 2]
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),

@@ -1,15 +1,11 @@
 # ~/.alacritty.toml
 
-import = [
-	# "~/.config/global/themes/alacritty/gruvbox_light.toml"
-	# "~/.config/global/themes/alacritty/gruvbox_dark.toml"
-	"~/.config/global/themes/alacritty/one_dark.toml"
-]
+import = [ "~/.config/global/themes/current.toml" ]
 
 [font]
 size = 10
 normal = { family = "Fira Code", style = "Regular" }
 
 [window]
-opacity = 0.92
+opacity = 0.85
 padding = { x = 12, y = 12 }

@@ -18,4 +18,5 @@ alias v="nvim"
 alias la="ls -la"
 
 export CONFIG="$HOME/.config/global"
+export THEME="$CONFIG/themes/current.toml"
 export CODE="$HOME/code"
