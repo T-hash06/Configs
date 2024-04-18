@@ -15,6 +15,7 @@ compinit
 # End of lines added by compinstall
 
 alias v="nvim"
+alias ls="ls --color=auto"
 alias la="ls -la"
 
 export CONFIG="$HOME/.config/global"
