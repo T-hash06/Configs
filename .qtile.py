@@ -151,7 +151,11 @@ screens = [
                     inactive=colors["secondary"],
                     this_current_screen_border=colors["primary"]
                 ),
-                widget.Prompt(),
+                widget.Prompt(
+                    ignore_dups_history=True,
+                    foreground=colors["primary"],
+                    prompt="\U0000f292:  "
+                ),
                 widget.WindowName(format="|   {name}", foreground=colors["secondary"]),
                 widget.TextBox("\uf004   I use Arch", foreground=colors["red"]),
                 widget.CPU(format="\uf233   Cpu:  {load_percent}%", foreground=colors["blue"]),
