@@ -88,6 +88,8 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Provitional Fn function to audio
+    Key([], "XF86AudioMute", lazy.spawn("amixer set -c 1 Speaker mute")),
 ]
 
 groups = [Group(i) for i in "\uf120\uf121\uef09"]
