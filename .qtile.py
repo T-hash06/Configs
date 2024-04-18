@@ -143,23 +143,25 @@ screens = [
         wallpaper_mode="fill",
         top=bar.Bar(
             [
+                widget.TextBox("\U000f08c7", foreground=colors["blue"], fontsize=24),
                 widget.GroupBox(
-                    highlight_method="text",
                     fontsize=14,
-                    active=colors["white"],
-                    inactive=colors["white"],
+                    highlight_method="text",
+                    active=colors["secondary"],
+                    inactive=colors["secondary"],
                     this_current_screen_border=colors["primary"]
                 ),
                 widget.Prompt(),
                 widget.WindowName(format="|   {name}", foreground=colors["secondary"]),
-                widget.TextBox("\uf004   I use Arch", foreground=colors["primary"]),
-                widget.CPU(format="\uf233   Cpu:  {load_percent}%", foreground=colors["red"]),
+                widget.TextBox("\uf004   I use Arch", foreground=colors["red"]),
+                widget.CPU(format="\uf233   Cpu:  {load_percent}%", foreground=colors["blue"]),
                 widget.Memory(format="\uefc5   Mem:  {MemUsed: .0f}M Used", foreground=colors["yellow"]),
                 widget.Wlan(format="\uf1eb   <span text_transform='lowercase'>{essid}</span>", foreground=colors["cyan"]),
                 widget.Battery(format="\uf240   {percent:2.0%}", foreground=colors["green"], low_foreground=colors["red"]),
                 widget.Clock(format="\uef37   %a,  %b %d - %I:%M", foreground=colors["magenta"]),
             ],
             30,
+            background="#00000066",
             margin=[0, 4, 0, 2]
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
