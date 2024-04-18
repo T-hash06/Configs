@@ -6,6 +6,8 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.g.mapleader = " "
 
+vim.keymap.set({'i', 'n'}, '<C-s>', '<Cmd>w<CR>')
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
