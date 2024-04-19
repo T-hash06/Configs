@@ -14,14 +14,23 @@ return {
 		end
 	},
 	{
+		"ms-jpq/coq_nvim",
+	},
+	{
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lsp = require("lspconfig")
+			local coq = require("coq")
+
 			-- lsp.lua_ls.setup({})
-			lsp.tsserver.setup({})
-			lsp.svelte.setup({})
+
+			lsp.tsserver.setup(coq.lsp_ensure_capabilities({}))
+			lsp.svelte.setup(coq.lsp_ensure_capabilities({}))
+
 			vim.keymap.set("n", "<Leader>;", vim.lsp.buf.hover)
 			vim.keymap.set("n", "<Leader>.", vim.lsp.buf.definition)
+
+			vim.cmd("COQnow -s")
 		end
 	}
 }
