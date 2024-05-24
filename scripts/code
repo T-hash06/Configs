@@ -1,4 +1,4 @@
 #!/bin/zsh
 
-flatpak run com.vscodium.codium
+flatpak run com.visualstudio.code
 
