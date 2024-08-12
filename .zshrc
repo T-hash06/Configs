@@ -103,3 +103,10 @@ export CONFIG="$HOME/.config/global"
 export THEME="$CONFIG/themes/current.toml"
 export CODE="$HOME/code"
 
+
+# bun completions
+[ -s "/home/t-hash06/.bun/_bun" ] && source "/home/t-hash06/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
