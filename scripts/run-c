@@ -1,0 +1,4 @@
+#!/bin/bash
+
+OUT="$1.o"
+nodemon "$1" -x "clear && gcc $1 -o $OUT && chmod +x $OUT && ./$OUT" && rm "$OUT"

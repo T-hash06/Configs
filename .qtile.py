@@ -58,6 +58,7 @@ keys = [
     Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "s", lazy.spawn("coreshot"), desc="Open screenshot helper"),
     # Grow windows. If current window is on the edge of screen and direction
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
@@ -90,6 +91,8 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     # Provitional Fn function to audio
     Key([], "XF86AudioMute", lazy.spawn("amixer set -c 1 Speaker mute")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("sudo brillo -A 10")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("sudo brillo -U 10")),
 ]
 
 groups = [Group(i) for i in "\uf120\uf121\uef09"]
