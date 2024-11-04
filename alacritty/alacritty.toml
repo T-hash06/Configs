@@ -4,7 +4,7 @@ import = [ "~/.config/global/themes/current.toml" ]
 
 [font]
 size = 10
-normal = { family = "Fira Code", style = "Regular" }
+normal = { family = "Monospace", style = "Regular" }
 
 [window]
 opacity = 0.85
